@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Add City"
-            android:textSize="25sp" />
+            android:textSize="28sp" />
 
         <Button
             android:id="@+id/delete_city"
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Delete City"
-            android:textSize="25sp" />
+            android:textSize="28sp" />
     </LinearLayout>
 
     <ListView

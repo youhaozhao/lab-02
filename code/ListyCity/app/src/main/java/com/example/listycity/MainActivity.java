@@ -22,12 +22,12 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
     ListView cityList;
+    ArrayAdapter<String> cityAdapter;
+    ArrayList<String> dataList;
     Button addCityButton;
     Button deleteCityButton;
     EditText inputCity;
     Button confirmButton;
-    ArrayAdapter<String> cityAdapter;
-    ArrayList<String> dataList;
     LinearLayout newCityLayout;
 
     @Override
@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
         inputCity = findViewById(R.id.input_city);
         confirmButton = findViewById(R.id.confirm_button);
         newCityLayout = findViewById(R.id.new_city_layout);
+
+        // String[] cities = {"Edmonton", "Vancouver", "Moscow", "Sydney", "Berlin", "Vienna", "Tokyo", "Beijing", "Osaka", "New Delhi"};
 
         String[] cities = {"Edmonton", "Montréal"};
 
@@ -70,21 +72,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // First, click delete button
-        // Second, choose the city you want to delete from listView
-        // Last, remove city from cityAdpater, then clear the listener
+        final int[] selectedPosition = {-1};
+
+        // ListView listener to record the click of city
+        cityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedPosition[0] = position;
+            }
+        });
+
+        // Once the deleteCityButton is clicked, delete the city at that index if index is not -1
         deleteCityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cityList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        String deleteCity = cityAdapter.getItem(position);
-                        cityAdapter.remove(deleteCity);
-                        cityList.setOnItemClickListener(null);
-                    }
+                if (selectedPosition[0] != -1) {
+                    dataList.remove(selectedPosition[0]);
+                    cityAdapter.notifyDataSetChanged();
+                    selectedPosition[0] = -1;
                 }
-                );
             }
         });
     }

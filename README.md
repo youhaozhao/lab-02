@@ -21,6 +21,8 @@ https://stackoverflow.com/questions/19345988/convert-a-list-of-strings-to-a-sing
 
 https://www.w3schools.com/java/ref_string_trim.asp
 
+https://stackoverflow.com/questions/60700779/the-content-of-the-adapter-has-changed-but-listview-did-not-receive-a-notificati
+
 
 
 ## Verbal Collaboration
